@@ -8,7 +8,6 @@ const baseQuery = fetchBaseQuery({
         const { accessToken } = getAuthCookies();
         if (accessToken) {
             headers.set('Authorization', `Bearer ${accessToken}`);
-            headers.set("ngrok-skip-browser-warning", "69420")
         }
         return headers;
     },
