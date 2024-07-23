@@ -14,7 +14,7 @@ export const Auth = api.injectEndpoints({
                 try {
                     const { data } = await queryFulfilled;
                     const { accessToken, refreshToken } = data;
-                    // setAuthCookies(accessToken, refreshToken);
+                    setAuthCookies(accessToken, refreshToken);
                 } catch (error) {
                     console.error('Failed to login:', error);
                 }
