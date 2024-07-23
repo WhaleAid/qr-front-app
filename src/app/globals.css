@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,6 +7,22 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --main-color: #7A63EB;
+  --secondary-color: #5C9BEB;
+  --main-color-light: #9a88f5;
+  --secondary-color-light: #7eb8f5;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,12 +35,14 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: rgb(122, 99, 235);
+  background: linear-gradient(120deg, var(--main-color) 0%, var(--secondary-color-light) 100%);
+  background-size: 200% 200%;
+  animation: gradient 3s ease infinite;
+}
+
+* {
+  font-family: "Poppins", sans-serif;
 }
 
 @layer utilities {

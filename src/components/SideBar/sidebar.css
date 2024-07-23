@@ -1,0 +1,21 @@
+.sidebar-enter {
+    opacity: 0;
+    transform: translateX(-100%);
+}
+
+.sidebar-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.sidebar-exit {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.sidebar-exit-active {
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
