@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { clearAuthCookies, getAuthCookies } from '../utils/cookies';
+import { clearAuthCookies, getAuthCookies, setAuthCookies } from '../utils/cookies';
 import api from './api';
 
 export const Auth = api.injectEndpoints({
