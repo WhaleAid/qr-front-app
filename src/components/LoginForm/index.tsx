@@ -25,7 +25,6 @@ export function LoginForm() {
 
     try {
       const response = await login({ email, password }).unwrap();
-      console.log("🚀 ~ handleSubmit ~ response:", response)
       notify("Connexion réussie!", { icon: "✅", style: { background: "#fff", color: "#000" } });
       router.push("/dashboard");
     } catch (err: any) {

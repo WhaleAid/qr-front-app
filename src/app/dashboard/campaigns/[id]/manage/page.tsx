@@ -37,7 +37,6 @@ export default function ManageCampaigns() {
     const ImageDialogRef = useRef<HTMLDialogElement>(null);
     const [sortedGenerations, setSortedGenerations] = useState<GenerationWithScans[]>([]);
     const [sortedImages, setSortedImages] = useState<ImageWithScans[]>([]);
-    console.log("🚀 ~ ManageCampaigns ~ sortedImages:", sortedImages)
     const [isModeratedFilterActive, setIsModeratedFilterActive] = useState(false);
     const [selected, setSelected] = useState<"generations" | "images">("generations");
 
@@ -117,8 +116,6 @@ export default function ManageCampaigns() {
                 })
             );
         });
-
-
 
         return () => {
             socket.off("connect", onConnect);
