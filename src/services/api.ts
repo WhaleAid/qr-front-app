@@ -7,7 +7,7 @@ const baseQuery = fetchBaseQuery({
     prepareHeaders: (headers) => {
         const { accessToken } = getAuthCookies();
         if (accessToken) {
-            headers.set('Authorization', `Bearer ${accessToken}`);
+            headers.set('Authorization', `Bearer ${accessToken}`)
         }
         return headers;
     },

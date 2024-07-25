@@ -112,14 +112,14 @@ export default function CampaignComponent() {
                                                     animate={{ opacity: 1, scale: 1 }}
                                                     exit={{ opacity: 0, scale: 0.5 }}
                                                     transition={{ duration: 0.5 }}
-                                                    className="absolute bg-white rounded-2xl" key={image._id} style={{ zIndex: currentImages.length - index }}>
+                                                    className="absolute rounded-2xl" key={image._id} style={{ zIndex: currentImages.length - index }}>
                                                     <div className="w-fit relative">
                                                         <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-primary to-secondary transform scale-[0.80] bg-red-500 rounded-full blur-3xl" />
-                                                        <div className="relative max-w-fit shadow-xl bg-gray-200 border border-gray-100 px-4 py-4 h-full overflow-hidden rounded-2xl flex flex-col justify-center items-center">
+                                                        <div className="relative xl:w-3/5 lg:w-3/5 md:w-3/5 sm:w-4/5 w-full m-auto shadow-xl bg-gray-200 border border-gray-100 px-4 py-4 h-full overflow-hidden rounded-2xl flex flex-col justify-center items-center">
                                                             <div className="h-10 w-10 rounded-full flex items-center justify-center mb-4 self-start">
                                                                 <img src="/assets/imgs/turnadon-logo.png" alt="" />
                                                             </div>
-                                                            <img src={image.image} alt="image" className="w-full aspect-square object-cover rounded-2xl z-10" />
+                                                            <img src={image.image} alt="image" className="w-full aspect-square object-cover rounded-2xl z-10"/>
                                                             <Meteors number={20} />
                                                         </div>
                                                     </div>
