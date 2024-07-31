@@ -195,7 +195,7 @@ export default function ManageCampaigns() {
                                     Images
                                 </span>
                             </button>
-                            <button className={`flex gap-2 justify-center items-center border border-gray-300 rounded-lg lg:p-4 p-2 w-1/2 transition-all text-white ${selected === "images" ? 'bg-primary' : 'bg-primaryLight'}`}
+                            <button className={`flex gap-2 justify-center items-center border border-gray-300 rounded-lg lg:p-4 p-2 w-1/2 transition-all text-white ${selected === "scans" ? 'bg-primary' : 'bg-primaryLight'}`}
                                 onClick={() => setSelected("scans")}>
                                 <FontAwesomeIcon icon={faQrcode} className="w-6 h-6" />
                                 <span className="lg:flex hidden">
