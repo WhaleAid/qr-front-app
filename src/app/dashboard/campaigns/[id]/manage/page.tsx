@@ -8,7 +8,7 @@ import BtnCustom from "@/components/btnCustom/btnCustom";
 import { selectIsAdmin } from "@/lib/features/user/userSlice";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { useGetCampaignByIdQuery } from "@/services/campaignService";
-import { useGetGenerationsByCampaignIdQuery, useModerateGenerationMutation } from "@/services/generationService";
+import { useGetGenerationsByCampaignIdQuery, useGetScansByCampaignIdQuery, useModerateGenerationMutation } from "@/services/generationService";
 import { useGetImagesByCampaignIdQuery, useModerateImageMutation } from "@/services/imageService";
 import { notify } from "@/utils/notify";
 import { faCheck, faFilter, faFont, faImage, faQrcode, faTimes, faTornado } from "@fortawesome/free-solid-svg-icons";
@@ -20,12 +20,14 @@ import { useSelector } from "react-redux";
 import { AnimatePresence, motion } from "framer-motion";
 import { socket } from "@/socket";
 import { CircularProgress, LinearProgress, linearProgressClasses, styled } from "@mui/material";
+import { Scan } from "@/app/types/scan";
 
 export default function ManageCampaigns() {
     const { id } = useParams<{ id: string }>();
 
     const { data: campaignData, error: errorCampaign, isLoading: isLoadingCampaign } = useGetCampaignByIdQuery(id);
     const { data: generationsData, error: errorGenerations, isLoading: isLoadingGenerations } = useGetGenerationsByCampaignIdQuery(id);
+    const { data: scansData, error: errorScans, isLoading: isLoadingScans } = useGetScansByCampaignIdQuery(id);
     const { data: imagesData, error: errorImages, isLoading: isLoadingImages } = useGetImagesByCampaignIdQuery(id);
     const [moderateGeneration, { error: GenerationErrorModeration }] = useModerateGenerationMutation();
     const [moderateImage, { error: ImageErrorModeration }] = useModerateImageMutation();
@@ -38,7 +40,7 @@ export default function ManageCampaigns() {
     const [sortedGenerations, setSortedGenerations] = useState<GenerationWithScans[]>([]);
     const [sortedImages, setSortedImages] = useState<ImageWithScans[]>([]);
     const [isModeratedFilterActive, setIsModeratedFilterActive] = useState(false);
-    const [selected, setSelected] = useState<"generations" | "images">("generations");
+    const [selected, setSelected] = useState<"generations" | "images" | "scans">("generations");
 
     useEffect(() => {
         if (isAdmin !== null && !isAdmin) {
@@ -191,6 +193,13 @@ export default function ManageCampaigns() {
                                 <FontAwesomeIcon icon={faImage} className="w-6 h-6" />
                                 <span className="lg:flex hidden">
                                     Images
+                                </span>
+                            </button>
+                            <button className={`flex gap-2 justify-center items-center border border-gray-300 rounded-lg lg:p-4 p-2 w-1/2 transition-all text-white ${selected === "images" ? 'bg-primary' : 'bg-primaryLight'}`}
+                                onClick={() => setSelected("scans")}>
+                                <FontAwesomeIcon icon={faQrcode} className="w-6 h-6" />
+                                <span className="lg:flex hidden">
+                                    Scans
                                 </span>
                             </button>
                         </div>
@@ -464,6 +473,104 @@ export default function ManageCampaigns() {
                                                 <GenerateForm type="image" onSubmitSuccess={
                                                     () => {
                                                         ImageDialogRef.current?.close();
+                                                    }
+                                                } />
+                                            </div>
+                                        </dialog>
+                                    </motion.div>
+                                </AnimatePresence>
+                            ) : selected === "scans" ? (
+                                <AnimatePresence mode="wait">
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 50 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: 50 }}
+                                        transition={{ duration: 0.2 }}
+                                        className="text-black text-center w-full">
+                                        <div className="">
+                                            {
+                                                isLoadingScans ? (
+                                                    <div className="w-full m-auto flex justify-center flex-col items-center gap-4">
+                                                        <Vortex
+                                                            visible={true}
+                                                            height="60"
+                                                            width="60"
+                                                            ariaLabel="vortex-loading"
+                                                            wrapperStyle={{}}
+                                                            wrapperClass="vortex-wrapper"
+                                                            colors={['#7A63EB', '#5C9BEB', '#7A63EB', '#5C9BEB', '#7A63EB', '#5C9BEB']}
+                                                        />
+                                                        <span className='text-black font-bold text-xl drop-shadow-md'>
+                                                            Chargement...
+                                                        </span>
+                                                    </div>
+                                                ) : errorCampaign || errorGenerations ? (
+                                                    <div className="text-black text-center w-full">
+                                                        <span>
+                                                            Erreur lors du chargement de la campagne
+                                                        </span>
+                                                    </div>
+                                                ) : (
+                                                    <div className="flex flex-col gap-6 bg-white rounded-lg p-4">
+                                                        <div className="flex flex-col gap-6">
+                                                            {
+                                                                scansData?.length === 0 ? (
+                                                                    <div className="w-full m-auto flex justify-center flex-col items-center gap-4">
+                                                                        <span className='text-black font-bold text-xl drop-shadow-md'>
+                                                                            Aucun scan effectué
+                                                                        </span>
+                                                                    </div>
+                                                                ) : (
+                                                                    <>
+                                                                        <div className="flex w-full justify-end">
+                                                                            {/* <FontAwesomeIcon
+                                                                                icon={faFilter}
+                                                                                className="w-6 h-6 cursor-pointer hover:text-primary transition-all"
+                                                                                onClick={handleFilterClick}
+                                                                            /> */}
+                                                                        </div>
+                                                                        <div className="grid flex-row flex-wrap gap-6 w-full">
+                                                                            {
+                                                                                scansData?.map((scan: Scan) => (
+                                                                                    <div key={scan._id} className={`flex flex-col lg:gap-6 gap-2 lg:justify-between justify-center bg-primaryLight bg-opacity-35 rounded-lg p-4 items-center w-fit transition-all shadow-md`}>
+                                                                                        <img className="aspect-square object-cover max-w-52 rounded-lg" src={scan.image.image} alt="" />
+                                                                                        <div className="flex justify-between items-center flex-col gap-4">
+                                                                                            <span className="text-black lg:text-lg text-xs max-w-60">
+                                                                                                {
+                                                                                                    scan.generation.text
+                                                                                                }
+                                                                                            </span>
+                                                                                            <div className="flex gap-6 flex-wrap">
+                                                                                                <div className="flex flex-row-reverse gap-2 justify-center items-center w-full">
+                                                                                                    <span>
+                                                                                                        {
+                                                                                                            scan.count
+                                                                                                        }
+                                                                                                    </span>
+                                                                                                    <FontAwesomeIcon icon={faQrcode} className="w-6 h-6" />
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                ))
+                                                                            }
+                                                                        </div>
+                                                                    </>
+                                                                )
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                )
+                                            }
+                                        </div>
+                                        <dialog className="text-black text-center lg:w-1/2 w-4/5 rounded-lg pb-10" ref={GenerationDialogRef}>
+                                            <div className="flex flex-col justify-end w-full items-center">
+                                                <button className="flex text-white w-6 h-6 bg-red-500 rounded-full m-4 self-end" onClick={() => GenerationDialogRef.current?.close()}>
+                                                    <FontAwesomeIcon icon={faTimes} className="w-4 h-4 m-auto" />
+                                                </button>
+                                                <GenerateForm type="completion" onSubmitSuccess={
+                                                    () => {
+                                                        GenerationDialogRef.current?.close();
                                                     }
                                                 } />
                                             </div>

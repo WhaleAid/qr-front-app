@@ -27,6 +27,7 @@ export const api = createApi({
         "Generation",
         "Campaign",
         "Image",
+        "Scan"
     ],
     baseQuery: baseQueryWithReauth,
     endpoints: () => ({}),

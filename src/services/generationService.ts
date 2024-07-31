@@ -4,6 +4,7 @@ import { fetchBaseQuery } from "@reduxjs/toolkit/query";
 import { createApi } from "@reduxjs/toolkit/query/react";
 import api from "./api";
 import { Image } from "@/app/types/image";
+import { Scan } from "@/app/types/scan";
 
 export const generationService = api.injectEndpoints({
     endpoints: (builder) => ({
@@ -86,6 +87,14 @@ export const generationService = api.injectEndpoints({
             providesTags: (result) =>
                 result ? [{ type: "Image", id: "LIST" }] : [],
         }),
+        getScansByCampaignId: builder.query<Scan[], string>({
+            query: (campaignId) => ({
+                url: `scan/campaign/${campaignId}`,
+                method: "GET",
+            }),
+            providesTags: (result, error, campaignId) =>
+                result ? [...result.map(({ _id }) => ({ type: "Scan", id: _id } as const)), { type: "Scan", id: "LIST" }] : [],
+        }),
     }),
     overrideExisting: true,
 });
@@ -101,4 +110,5 @@ export const {
     useModerateGenerationMutation,
     useGetMyGenerationHistoryQuery,
     useGetMyImageHistoryQuery,
+    useGetScansByCampaignIdQuery,
 } = generationService;
