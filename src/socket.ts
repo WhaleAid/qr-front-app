@@ -4,7 +4,8 @@ const socket = io(process.env.NEXT_PUBLIC_API_URL!, {
     extraHeaders: {
         'Authorization': `Bearer ${process.env.NEXT_PUBLIC_API_KEY}`
     },
-    transports: ['websocket', 'polling']
+    transports: ['websocket', 'polling'],
+    path: '/socket.io',
 });
 
 socket.on('connect', () => {
