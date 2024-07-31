@@ -529,7 +529,7 @@ export default function ManageCampaigns() {
                                                                                 onClick={handleFilterClick}
                                                                             /> */}
                                                                         </div>
-                                                                        <div className="grid flex-row flex-wrap gap-6 w-full">
+                                                                        <div className="flex flex-row flex-wrap gap-6 w-full">
                                                                             {
                                                                                 scansData?.map((scan: Scan) => (
                                                                                     <div key={scan._id} className={`flex flex-col lg:gap-6 gap-2 lg:justify-between justify-center bg-primaryLight bg-opacity-35 rounded-lg p-4 items-center w-fit transition-all shadow-md`}>
