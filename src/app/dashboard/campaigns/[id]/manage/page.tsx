@@ -233,7 +233,7 @@ export default function ManageCampaigns() {
                                                             Chargement...
                                                         </span>
                                                     </div>
-                                                ) : errorCampaign || errorGenerations ? (
+                                                ) : errorGenerations ? (
                                                     <div className="text-black text-center w-full">
                                                         <span>
                                                             Erreur lors du chargement de la campagne
@@ -359,7 +359,7 @@ export default function ManageCampaigns() {
                                                             Chargement...
                                                         </span>
                                                     </div>
-                                                ) : errorCampaign || errorImages ? (
+                                                ) : errorImages ? (
                                                     <div className="text-black text-center w-full">
                                                         <span>
                                                             Erreur lors du chargement des images
@@ -508,7 +508,7 @@ export default function ManageCampaigns() {
                                                             Chargement...
                                                         </span>
                                                     </div>
-                                                ) : errorCampaign || errorGenerations ? (
+                                                ) : errorScans ? (
                                                     <div className="text-black text-center w-full">
                                                         <span>
                                                             Erreur lors du chargement de la campagne
