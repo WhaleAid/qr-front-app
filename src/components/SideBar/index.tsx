@@ -120,18 +120,6 @@ const SideBar: FC<SideBarProps> = () => {
                                     </li>
                                 </>
                             )}
-                            <li
-                                className="flex items-center md:justify-start justify-center gap-6 py-4 px-4 my-2 rounded-xl w-full cursor-pointer text-black hover:bg-primary hover:text-white transition-all"
-                                onClick={() => {
-                                    router.push('/dashboard/contact')
-                                    isMobile && setShowMenu(false)
-                                }}
-                            >
-                                <FontAwesomeIcon icon={faContactCard} className="w-6 h-6 mb-1" />
-                                <a href="#" className="text-md font-bold md:block hidden">
-                                    Contact
-                                </a>
-                            </li>
                         </ul>
                     </div>
                     <div className="mb-2">
