@@ -269,17 +269,6 @@ export default function ManageCampaigns() {
                                                                                             }
                                                                                         </span>
                                                                                         <div className="flex gap-6 flex-wrap">
-                                                                                            <div className="flex flex-row-reverse gap-2 justify-center items-center">
-                                                                                                <FontAwesomeIcon icon={faQrcode} className="w-6 h-6" />
-                                                                                                <span>
-                                                                                                    {
-                                                                                                        generation.scanCount
-                                                                                                    }{' '}
-                                                                                                    <span className="lg:flex hidden">
-                                                                                                        Scans
-                                                                                                    </span>
-                                                                                                </span>
-                                                                                            </div>
                                                                                             <button className="flex items-center gap-2 bg-secondary hover:bg-secondaryDark transition-all text-white lg:w-12 lg:h-12 w-8 h-8 rounded-full"
                                                                                                 onClick={() => {
                                                                                                     try {
@@ -408,17 +397,6 @@ export default function ManageCampaigns() {
                                                                                         }
                                                                                     </span>
                                                                                     <div className="flex gap-6 lg:ml-4 flex-wrap">
-                                                                                        <div className="flex flex-row-reverse gap-2 justify-center items-center text-black">
-                                                                                            <FontAwesomeIcon icon={faQrcode} className="w-6 h-6" />
-                                                                                            <span>
-                                                                                                {
-                                                                                                    image.scanCount
-                                                                                                }{' '}
-                                                                                                <span className="lg:flex hidden">
-                                                                                                    Scans
-                                                                                                </span>
-                                                                                            </span>
-                                                                                        </div>
                                                                                         <button className="flex items-center gap-2 bg-secondary hover:bg-secondaryDark transition-all text-white lg:w-12 lg:h-12 w-8 h-8 rounded-full"
                                                                                             disabled={
                                                                                                 !image.image ? true : false
