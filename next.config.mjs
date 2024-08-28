@@ -21,7 +21,7 @@ const nextConfig = {
                 source: '/((?!api|_next/static|_next/image|favicon.ico|authentication|register|assets).*)',
                 missing: [
                     {
-                        type: 'cookie',
+                        type: 'localStorage',
                         key: 'accessToken',
                     },
                 ],
