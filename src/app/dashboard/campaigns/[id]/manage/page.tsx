@@ -157,9 +157,13 @@ export default function ManageCampaigns() {
                     <div className={`rounded-full w-2 h-2 ${isConnected ? 'bg-green-500' : 'bg-red-500'
                         }`}>
                     </div>
-                    <BtnCustom text="+ Générer" colorScheme="light" classname="!w-fit" onclick={() =>
-                        selected === "generations" ? GenerationDialogRef.current?.showModal() : ImageDialogRef.current?.showModal()
-                    } />
+                    {
+                        selected === "generations" || selected === "images" ? (
+                            <BtnCustom text="+ Générer" colorScheme="light" classname="!w-fit" onclick={() =>
+                                selected === "generations" ? GenerationDialogRef.current?.showModal() : ImageDialogRef.current?.showModal()
+                            } />
+                        ) : null
+                    }
                 </div>
             </div>
             {
