@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { clearAuthCookies, getAuthCookies, setAuthCookies } from '../utils/cookies';
+import { clearAuthTokens, getAuthTokens, setAuthTokens } from '../utils/authToken';
 import api from './api';
 
 export const Auth = api.injectEndpoints({
@@ -14,7 +14,7 @@ export const Auth = api.injectEndpoints({
                 try {
                     const { data } = await queryFulfilled;
                     const { accessToken, refreshToken } = data;
-                    setAuthCookies(accessToken, refreshToken);
+                    setAuthTokens(accessToken, refreshToken);
                 } catch (error) {
                     console.error('Failed to login:', error);
                 }
@@ -42,7 +42,7 @@ export const Auth = api.injectEndpoints({
             async onQueryStarted(arg, { queryFulfilled }) {
                 try {
                     await queryFulfilled;
-                    clearAuthCookies();
+                    clearAuthTokens();
                 } catch (error) {
                     console.error('Failed to logout:', error);
                 }

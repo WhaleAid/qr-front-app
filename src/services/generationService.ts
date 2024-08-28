@@ -1,5 +1,5 @@
 import { Generation, GenerationWithScans } from "@/app/types/generation";
-import { clearAuthCookies, getAuthCookies } from "@/utils/cookies";
+import { clearAuthTokens, getAuthTokens } from "@/utils/authToken";
 import { fetchBaseQuery } from "@reduxjs/toolkit/query";
 import { createApi } from "@reduxjs/toolkit/query/react";
 import api from "./api";

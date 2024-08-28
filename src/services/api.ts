@@ -1,11 +1,10 @@
-import { clearAuthCookies, getAuthCookies } from "@/utils/cookies";
+import { clearAuthTokens, getAuthTokens } from "@/utils/authToken";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const baseQuery = fetchBaseQuery({
     baseUrl: process.env.NEXT_PUBLIC_API_URL,
-    credentials: 'include',
     prepareHeaders: (headers) => {
-        const { accessToken } = getAuthCookies();
+        const { accessToken } = getAuthTokens();
         if (accessToken) {
             headers.set('Authorization', `Bearer ${accessToken}`)
         }
@@ -16,7 +15,7 @@ const baseQuery = fetchBaseQuery({
 const baseQueryWithReauth = async (args: any, api: any, extraOptions: any) => {
     let result = await baseQuery(args, api, extraOptions);
     if (result.error && result.error.status === 401) {
-        clearAuthCookies();
+        clearAuthTokens();
     }
     return result;
 };

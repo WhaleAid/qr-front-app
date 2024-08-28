@@ -1,12 +1,12 @@
 
 import { clearUser } from '@/lib/features/user/userSlice';
-import { getAuthCookies } from '@/utils/cookies';
+import { getAuthTokens } from '@/utils/authToken';
 import { Middleware, isAnyOf } from '@reduxjs/toolkit';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export async function middleware(request: NextRequest) {
-    const { accessToken } = getAuthCookies();
+    const { accessToken } = getAuthTokens();
 
     const publicPaths = [
         '/authentication'
