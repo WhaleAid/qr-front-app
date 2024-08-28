@@ -243,7 +243,7 @@ export default function ManageCampaigns() {
                                                     <div className="flex flex-col gap-6 bg-white rounded-lg p-4">
                                                         <div className="flex flex-col gap-6">
                                                             {
-                                                                sortedGenerations?.length === 0 ? (
+                                                                sortedGenerations?.length === 0 && generationsData?.length === 0 ? (
                                                                     <div className="w-full m-auto flex justify-center flex-col items-center gap-4">
                                                                         <span className='text-black font-bold text-xl drop-shadow-md'>
                                                                             Aucune génération disponible
@@ -368,7 +368,7 @@ export default function ManageCampaigns() {
                                                 ) : (
                                                     <div className="flex flex-col gap-6 bg-white rounded-lg p-4">
                                                         {
-                                                            sortedImages && sortedImages.length > 0 ? (
+                                                            sortedImages && sortedImages.length > 0 && imagesData?.length !== 0 ? (
                                                                 <>
                                                                     <div className="flex flex-col gap-6 w-full">
                                                                         {
