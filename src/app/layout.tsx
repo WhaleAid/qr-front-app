@@ -25,7 +25,9 @@ export default function RootLayout({
     if (pathRequiresAuth && !accessToken) {
       router.push("/authentication");
     } else if (pathname === "/authentication" && accessToken) {
-      router.push("/dashboard");
+      setTimeout(() => {
+        router.push("/dashboard");
+      }, 1000);
     }
   }, [router]);
 
