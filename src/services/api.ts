@@ -3,8 +3,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const baseQuery = fetchBaseQuery({
     baseUrl: process.env.NEXT_PUBLIC_API_URL,
-    prepareHeaders: (headers) => {
-        const { accessToken } = getAuthTokens();
+    prepareHeaders: async (headers) => {
+        const { accessToken } = await getAuthTokens();
         if (accessToken) {
             headers.set('Authorization', `Bearer ${accessToken}`)
         }

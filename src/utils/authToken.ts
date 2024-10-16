@@ -3,10 +3,10 @@ export const setAuthTokens = (accessToken: string, refreshToken: string) => {
   localStorage.setItem('refreshToken', refreshToken);
 };
 
-export const getAuthTokens = () => {
+export const getAuthTokens = async () => {
   const accessToken = localStorage.getItem('accessToken');
   const refreshToken = localStorage.getItem('refreshToken');
-  return { accessToken, refreshToken };
+  return { accessToken: accessToken, refreshToken: refreshToken };
 };
 
 export const clearAuthTokens = () => {

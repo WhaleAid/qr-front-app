@@ -27,7 +27,7 @@ export default function CampaignComponent() {
     const [removeVote] = useRemoveVoteMutation();
     const [currentGenerations, setCurrentGenerations] = useState<Generation[]>([]);
     const [currentImages, setCurrentImages] = useState<Image[]>([]);
-    const [currentView, setCurrentView] = useState<'text' | 'images'>('text');
+    const [currentView, setCurrentView] = useState<'text' | 'images' | 'crea'>('text');
 
     useEffect(() => {
         if (generations) {
@@ -119,7 +119,7 @@ export default function CampaignComponent() {
                                                             <div className="h-10 w-10 rounded-full flex items-center justify-center mb-4 self-start">
                                                                 <img src="/assets/imgs/turnadon-logo.png" alt="" />
                                                             </div>
-                                                            <img src={image.image} alt="image" className="w-full aspect-square object-cover rounded-2xl z-10"/>
+                                                            <img src={image.image} alt="image" className="w-full aspect-square object-cover rounded-2xl z-10" />
                                                             <Meteors number={20} />
                                                         </div>
                                                     </div>
