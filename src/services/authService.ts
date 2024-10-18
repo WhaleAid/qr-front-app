@@ -41,5 +41,4 @@ export const Auth = api.injectEndpoints({
 export const {
     useLoginMutation,
     useRegisterMutation,
-    useLogoutMutation,
 } = Auth;
