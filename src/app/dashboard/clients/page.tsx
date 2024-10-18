@@ -58,8 +58,8 @@ export default function clients() {
                                         </div>
                                         <div className="flex gap-4">
                                             <div>
-                                                <p className="text-black font-bold text-center lg:text-lg text-sm">{client.company}</p>
-                                                <p className="text-gray-600 text-center lg:text-lg text-sm">{client.email}</p>
+                                                <p className="text-black font-bold text-center lg:text-lg text-sm">{client.company ?? ''}</p>
+                                                <p className="text-gray-600 text-center lg:text-lg text-sm">{client.email ?? ''}</p>
                                             </div>
                                         </div>
                                     </div>

@@ -60,7 +60,7 @@ export default function clientPage() {
                         </div>
                         <p className="text-black lg:flex hidden">
                             {
-                                (campaigns?.at(0) as CampaignWithOwner)?.owner.company
+                                (campaigns?.at(0) as CampaignWithOwner)?.owner.company ?? ''
                             }
                         </p>
                     </div>

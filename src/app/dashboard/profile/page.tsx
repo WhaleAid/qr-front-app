@@ -29,8 +29,8 @@ export default function Profile() {
                         )
                     }
                     <div className="flex flex-col gap-2">
-                        <span className="text-xl font-bold text-black">{me?.company}</span>
-                        <span className="text-lg text-gray-500">{me?.email}</span>
+                        <span className="text-xl font-bold text-black">{me?.company ?? ""}</span>
+                        <span className="text-lg text-gray-500">{me?.email ?? ""}</span>
                     </div>
                 </div>
             </div>
