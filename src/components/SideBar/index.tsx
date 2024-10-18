@@ -12,6 +12,7 @@ import { useGetMeQuery } from "@/services/userService";
 import { useAppDispatch } from "@/lib/hooks";
 import { clearUser } from "@/lib/features/user/userSlice";
 import { useMediaQuery } from "@mui/material";
+import { clearAuthTokens } from "@/utils/authToken";
 
 interface SideBarProps { }
 
@@ -128,7 +129,7 @@ const SideBar: FC<SideBarProps> = () => {
                             className="shadow-[0_4px_14px_0_rgba(255,0,0,39%)] hover:shadow-[0_6px_20px_rgba(255,0,0,23%)] hover:bg-[rgba(255,0,0,0.9)] px-8 py-2 bg-[#f30000] rounded-md text-white font-light transition duration-200 ease-linear flex justify-center gap-2 items-center m-auto"
                             onClick={() => {
                                 dispatch(clearUser());
-                                logout();
+                                clearAuthTokens();
                                 router.push("/authentication");
                             }}
                         >

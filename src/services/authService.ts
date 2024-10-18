@@ -33,17 +33,7 @@ export const Auth = api.injectEndpoints({
                 method: 'POST',
                 body: token
             })
-        }),
-        logout: builder.mutation<any, void>({
-            async onQueryStarted(arg, { queryFulfilled }) {
-                try {
-                    await queryFulfilled;
-                    clearAuthTokens();
-                } catch (error) {
-                    console.error('Failed to logout:', error);
-                }
-            },
-        }),
+        })
     }),
     overrideExisting: true,
 });
