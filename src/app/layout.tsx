@@ -17,19 +17,24 @@ export default function RootLayout({
   const pathname = usePathname()
 
   useEffect(() => {
-    const publicPaths = ["/authentication"];
+    const publicPaths = ["/authentication", "/register"]; // Define paths that don't require authentication
     const pathRequiresAuth = !publicPaths.includes(pathname);
 
+    // Wrap the token check and redirection inside useEffect
     const accessToken = localStorage.getItem("accessToken");
 
+    // If the path requires auth and no token is present, redirect to /authentication
     if (pathRequiresAuth && !accessToken) {
+      console.log('No access token found, redirecting to /authentication.');
       router.push("/authentication");
-    } else if (pathname === "/authentication" && accessToken) {
-      setTimeout(() => {
-        router.push("/dashboard");
-      }, 1000);
     }
-  }, [router]);
+
+    // If the user is on /authentication and has a valid token, redirect to /dashboard
+    if (pathname === "/authentication" && accessToken) {
+      console.log('Access token found, redirecting to /dashboard.');
+      router.push("/dashboard");
+    }
+  }, [pathname, router]);
 
   return (
     <StoreProvider>
