@@ -21,6 +21,7 @@ const SideBar: FC<SideBarProps> = () => {
     const isMobile = useMediaQuery('(max-width:1280px)');
     const [showMenu, setShowMenu] = useState<boolean>(!isMobile);
 
+
     const dispatch = useAppDispatch();
     const router = useRouter();
 

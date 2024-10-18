@@ -35,10 +35,6 @@ export const Auth = api.injectEndpoints({
             })
         }),
         logout: builder.mutation<any, void>({
-            query: () => ({
-                url: 'auth/logout',
-                method: 'POST',
-            }),
             async onQueryStarted(arg, { queryFulfilled }) {
                 try {
                     await queryFulfilled;
