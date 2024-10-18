@@ -4,7 +4,6 @@ import { FC, useEffect, useState } from "react";
 import Avatar from "../avatar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faBusinessTime, faContactCard, faHistory, faRightFromBracket, faUsers, faXmark } from "@fortawesome/free-solid-svg-icons";
-import { useLogoutMutation } from "@/services/authService";
 import { useRouter } from "next/navigation";
 import { Vortex } from "react-loader-spinner";
 import { User } from "@/app/types/user";
@@ -17,7 +16,6 @@ import { clearAuthTokens } from "@/utils/authToken";
 interface SideBarProps { }
 
 const SideBar: FC<SideBarProps> = () => {
-    const [logout, { isLoading }] = useLogoutMutation();
     const { data: userData, error: userError, isLoading: userLoading } = useGetMeQuery();
     const isMobile = useMediaQuery('(max-width:1280px)');
     const [showMenu, setShowMenu] = useState<boolean>(!isMobile);
